@@ -5,11 +5,27 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "css-build": "node-sass style/main.scss style/main.css",
+    "css-deploy": "npm run css-build && npm run css-postcss",
+    "css-postcss": "postcss --use autoprefixer --output style/main.css style/main.css",
+    "css-watch": "npm run css-build -- --watch",
+    "deploy": "npm run css-deploy",
+    "css-start": "npm-run-all --parallel css-watch"
   },
   "dependencies": {
+    "axios": "^0.19.2",
+    "buefy": "^0.8.20",
+    "bulma-start": "0.0.4",
     "core-js": "^3.6.5",
-    "vue": "^2.6.11"
+    "cors": "^2.8.5",
+    "helmet": "^3.23.1",
+    "node-sass": "^4.14.1",
+    "npm-run-all": "^4.1.5",
+    "reflect-metadata": "^0.1.13",
+    "vue": "^2.6.11",
+    "vue-router": "^3.3.4",
+    "vuex": "^3.4.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.4.0",

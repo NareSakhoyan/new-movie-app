@@ -20,8 +20,9 @@ const store = new Vuex.Store({
             region: ['US']
         },
         genreGroups: [],
-        currentUser: {},
+        currentUser: localStorage.user? JSON.parse(localStorage.user): {},// JSON.parse(localStorage.user) ||
         loggedIn: !!localStorage,
+        hasResponse: false
     },
     mutations: {
         setType(state, payload) {
@@ -49,9 +50,11 @@ const store = new Vuex.Store({
             state.movieList = []
         },
 
+        hasResponseFalse(state) {
+            state.hasResponse = false
+        },
+
         async setDataFromAPI(state) {
-            console.log('type: ', state.type)
-            console.log('search: ', state.search)
             if (state.type === 'getMovie') {
                 state.movieDetails = (await DataService[state.type](state.search)).data;
                 store.commit('addMovieToMovieList')
@@ -84,18 +87,21 @@ const store = new Vuex.Store({
         login(state) {
             UserService.login({email: state.currentUser.email, password: state.currentUser.password})
                 .then(response => {
+                    state.loggedIn = true
+                    state.hasResponse = true
                     state.currentUser = response.data.userDetails.user
-                    localStorage.setItem('userID', state.currentUser.id)
+                    localStorage.setItem('user', JSON.stringify(state.currentUser))
                     localStorage.setItem('token', response.data.token)
                 })
                 .catch(e => {
-                    console.log('Error: ', e)
+                    console.log(e)
                 })
         },
 
         logout(state) {
             state.auth = ''
             delete localStorage.token
+            delete localStorage.user
         },
 
         updateBookMark (state) {
@@ -159,7 +165,6 @@ const store = new Vuex.Store({
 
         async me({commit}) {
             const response = (await UserService.getMe()).data
-            console.log(11111111, response)
             commit('me', response);
         }
     },

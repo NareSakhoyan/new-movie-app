@@ -20,8 +20,8 @@
                         </router-link>
                         <div class="image" v-if="loggedIn">
                             <img :src="bookmarkIcon" alt="bookmark" class="bookmarkImg" @click="bookmarkClick">
-                            <!--                        <img src="../assets/bookmark.jpg" alt="bookmark" class="bookmarkImg" @click="bookmarkClick">-->
-                            <!--                        <img src="../assets/bookmarked.jpg" alt="bookmark" class="bookmarkImg" @click="bookmarkClick">-->
+<!--                                                    <img src="../assets/bookmark.jpg" alt="bookmark" class="bookmarkImg" @click="bookmarkClick">-->
+<!--                                                    <img src="../assets/bookmarked.jpg" alt="bookmark" class="bookmarkImg" @click="bookmarkClick">-->
                         </div>
                     </div>
                 </div>
@@ -43,9 +43,7 @@
                 return this.movie.id
             },
             loggedIn() {
-                console.log('11111111111111', this.$store.state.loggedIn, !!localStorage.token)
-                // return this.$store.state.loggedIn
-                return !!localStorage.token
+                return this.$store.state.loggedIn
             },
             currentUser() {
                 return this.$store.state.currentUser

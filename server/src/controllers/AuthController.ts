@@ -10,7 +10,6 @@ class AuthController {
     static login = async (req: Request, res: Response) => {
         //Check if email and password are set
         let { email, password } = req.body;
-        console.log("email: ", email, "password: ", password)
         if (!(email && password)) {
             res.status(400).send();
         }
@@ -20,7 +19,6 @@ class AuthController {
         let user: User;
         try {
             user = await userRepository.findOneOrFail({ where: { email } });
-            console.log('----------', user)
         } catch (error) {
             res.status(401).send();
         }

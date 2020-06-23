@@ -13,7 +13,6 @@ function requireAuth(to, from, next) {
         next()
     }
     else{
-        console.log('go login')
         next({
             path: '/login',
             query: {redirect: to.fullPath}
@@ -21,11 +20,23 @@ function requireAuth(to, from, next) {
     }
 }
 
+function needToLogout(to, from, next) {
+    if (localStorage.token){
+        next({
+            path: '/logout',
+            query: {redirect: to.fullPath}
+        })
+    }
+    else{
+        next()
+    }
+}
+
 
 const routes = [
     {path: '/', name: 'home', component: HomePage},
     {path: '/register', name: 'register', component: RegisterPage},
-    {path: '/login', name: 'login', component: LoginPage},
+    {path: '/login', name: 'login', component: LoginPage, beforeEnter: needToLogout},
     {path: '/logout', redirect: {name: 'home'}},
     {path: '/profile', name: 'profile', component: ProfilePage, beforeEnter: requireAuth},
     {path: '/search/:search?', name: 'search', component: SearchPage},

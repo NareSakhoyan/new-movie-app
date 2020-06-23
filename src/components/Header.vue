@@ -60,7 +60,6 @@
         },
         computed: {
             loggedIn() {
-                console.log(5555, this.$store.state.loggedIn, 5555, !!localStorage.token)
                 return this.$store.state.loggedIn
             }
         },
@@ -69,8 +68,13 @@
             logout(){
                 this.logoutInStore()
             },
-
         },
+        mounted() {
+            this.$store.commit('setLoggedIn')
+        },
+        updated() {
+            this.$store.commit('setLoggedIn')
+        }
 
     }
 </script>

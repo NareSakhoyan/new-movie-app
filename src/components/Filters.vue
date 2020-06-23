@@ -1,6 +1,6 @@
 <template>
-    <div class="filters">
-        <b-field label="Filters: ">
+    <div class="filters level is-5">
+        <b-field label="Filters: " class="level-item">
             <div v-for="(value, filter) in filters" :key="filter" class="mr">
                 <b-field :label="filter==='with_genres'? 'Genres': filter" class="is-capitalized"></b-field>
                 <b-select :name="filter" placeholder="Choose..." @blur="changeFilter">
@@ -12,8 +12,8 @@
                     </option>
                 </b-select>
             </div>
+            <b-button class="is-outlined is-success-passive apply level-item" @click="applyFilters">apply</b-button>
         </b-field>
-        <b-button class="is-outlined is-success-passive apply" @click="applyFilters">apply</b-button>
     </div>
 </template>
 
@@ -39,7 +39,6 @@
         methods: {
             ...mapActions(['getDataFromAPI']),
             changeFilter (e) {
-                console.log('changing filter')
                 let value = e.target.value
                 if (value === 'Choose...') return ;
                 const key = e.target.name
@@ -76,5 +75,8 @@
     }
     .filters {
         margin: 20px 0 40px 0;
+    }
+    .apply {
+        margin: 35px 0 0 20px;
     }
 </style>

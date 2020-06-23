@@ -6,13 +6,12 @@ class DataService {
 
     discover(filters, sortBy = 'release_date.asc'){
         //'https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=0c0abc3a3afe095e5248a68a605f2a0f'
-        console.log('filters: ', filters)
         let filterString = ``
         for (const i in filters) {
             filterString += `&${i}=${filters[i]}`
         }
         const url = `${this.BASE_URI}discover/movie?sort_by=${sortBy}&include_adult=false${filterString}&${this.API}`
-        console.log(url)
+        // console.log(url)
         return this.axiosCall(url)
     }
 

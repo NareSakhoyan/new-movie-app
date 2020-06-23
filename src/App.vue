@@ -25,7 +25,6 @@ export default {
     try {
       this.loading = true;
       if(token) {
-        console.log('asdadaddad')
         await this.$store.dispatch('me')
       }
     } catch (e) {

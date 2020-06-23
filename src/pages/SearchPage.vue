@@ -6,7 +6,6 @@
         <SearchBar />
         <div class="container">
             <MoviesList/>
-
         </div>
     </div>
 </template>
@@ -46,7 +45,6 @@
             }
         },
         mounted() {
-            console.log('searchMounted')
             this.searchFunction()
         },
         updated() {
@@ -56,5 +54,7 @@
 </script>
 
 <style scoped>
-
+    .container {
+        margin-top: 50px;
+    }
 </style>

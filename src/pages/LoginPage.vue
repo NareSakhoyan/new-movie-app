@@ -35,19 +35,21 @@
         methods: {
             ...mapActions(['login']),
             submitLogin () {
-                console.log('email', this.email, 'pass', this.password)
                 this.$store.commit('setCurrentUser', {email: this.email, password: this.password})
                 this.login()
-                setTimeout(() => {
-                    if (this.loggedIn){
-                        this.$router.replace(this.$route.query.redirect || '/')
-                    }
-                    else{
-                        this.error = true
-                    }
-                }, 100)
+
             }
-        }
+        },
+        watch: {
+            loggedIn() {
+                if (this.loggedIn) {
+                    this.$router.replace(this.$route.query.redirect || '/')
+                }
+                else{
+                    this.error = true
+                }
+            }
+        },
     }
 </script>
 

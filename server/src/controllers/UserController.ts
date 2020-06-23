@@ -43,7 +43,6 @@ class UserController{
     };
 
     static newUser = async (req: Request, res: Response) => {
-        console.log('newUserCalled')
         //Get parameters from the body
         let { email, password, name, surname, phone, bookmarks } = req.body;
         let user = new User();
@@ -81,11 +80,9 @@ class UserController{
     };
 
     static editUser = async (req: Request, res: Response) => {
-        console.log('editiiiiing')
         //Get the ID from the url
         const id = req.params.id;
 
-        console.log('id: ', id)
         //Get values from the body
         const { email, bookmarks, role } = req.body;
 

@@ -29,7 +29,6 @@
                     if (typeof text === "number" || typeof text === "object"){
                         return ''
                     }
-                    console.log(444, typeof text == "number")
                     return  text;
                 },
                 set: function (e) {

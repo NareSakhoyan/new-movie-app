@@ -56,15 +56,6 @@ export class User {
 
 
 
-
-
-
-
-
-
-
-
-
 // import {Entity, ObjectIdColumn, ObjectID, Column} from "typeorm";
 //
 // @Entity()
